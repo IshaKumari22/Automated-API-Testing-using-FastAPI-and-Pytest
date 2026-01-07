@@ -1,73 +1,70 @@
-# Manual Test Cases – User Registration API
+# Automated API Testing Framework
 
-## Test Case ID: TC_REG_01
-Title: Register user with valid email and password
+This project demonstrates automated API testing using Python.  
+It focuses on testing REST APIs built with FastAPI, covering manual testing concepts, automated test cases, and CI/CD integration using GitHub Actions.
 
-Precondition:
-- FastAPI server is running
+The goal of this project is to showcase **QA / SDET skills**, including test design, validation testing, and continuous integration.
 
-Steps:
-1. Open browser
-2. Go to http://127.0.0.1:8000/docs
-3. Select POST /register
-4. Click "Try it out"
-5. Enter valid email and password
-6. Click "Execute"
+---
 
-Test Data:
-{
-  "email": "test@gmail.com",
-  "password": "123456"
-}
+## 🚀 Tech Stack
+- Python
+- FastAPI
+- Pytest
+- httpx
+- GitHub Actions (CI)
 
-Expected Result:
-- Status code should be 200
-- Response should contain success message and email
+---
 
 
+---
 
-## Test Case ID: TC_REG_02
-Title: Register user without email
+## 🧪 Test Coverage
 
-Precondition:
-- FastAPI server is running
+The following test scenarios are covered:
 
-Steps:
-1. Open http://127.0.0.1:8000/docs
-2. Select POST /register
-3. Click "Try it out"
-4. Enter request body without email
-5. Click "Execute"
+### Registration API
+- Successful user registration
+- Duplicate user registration
+- Missing required fields
+- Invalid input handling
 
-Test Data:
-{
-  "password": "123456"
-}
+### Login API
+- Successful login
+- Login with wrong password
+- Login with non-existent user
+- Validation errors (missing fields, wrong data types)
 
-Expected Result:
-- Status code should be 422
-- Error message should indicate missing email field
+Both **positive and negative test cases** are included.
 
+---
 
-## Test Case ID: TC_REG_03
-Title: Register user with password as number
+## 🧠 Testing Concepts Demonstrated
+- Manual test case design
+- Automated API testing using pytest
+- Use of pytest fixtures for test setup and reuse
+- Validation testing vs business logic testing
+- Understanding of HTTP status codes (200, 422)
+- Negative and edge-case testing
 
-Precondition:
-- FastAPI server is running
+---
 
-Steps:
-1. Open http://127.0.0.1:8000/docs
-2. Select POST /register
-3. Click "Try it out"
-4. Enter password as number
-5. Click "Execute"
+## ▶️ How to Run the Project Locally
 
-Test Data:
-{
-  "email": "test@gmail.com",
-  "password": 12345
-}
+### 1️⃣ Clone the repository
+```bash
+git clone https://github.com/IshaKumari22/Automated-API-Testing-using-FastAPI-and-Pytest
+cd Automated-API-Testing-using-FastAPI-and-Pytest
 
-Expected Result:
-- Status code should be 422
-- Error message should indicate invalid data type
+2️⃣ Create and activate virtual environment
+python -m venv venv
+venv\Scripts\activate
+
+3️⃣ Install dependencies
+pip install -r requirements.txt
+
+4️⃣ Start the FastAPI server
+uvicorn app.main:app --reload
+
+5️⃣ Run automated tests
+pytest
