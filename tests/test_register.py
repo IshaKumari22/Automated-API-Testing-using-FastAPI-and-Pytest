@@ -8,7 +8,7 @@ def register_user():
     httpx.post(
         f"{BASE_URL}/register",
         json={
-            "email":"test@gmail.com",
+            "email":"test1@gmail.com",
             "password":"123"
         }
     )
@@ -19,7 +19,7 @@ def test_login_success(register_user):
     response=httpx.post(
         f"{BASE_URL}/login",
         json={
-             "email":"test@gmail.com",
+             "email":"test1@gmail.com",
             "password":"123"
         }
     )
@@ -30,7 +30,7 @@ def test_login_wrong_password(register_user):
     response=httpx.post(
         f"{BASE_URL}/login",
         json={
-            "email":"test@gmail.com",
+            "email":"test1@gmail.com",
             "password":"1234"
         }
     )
@@ -101,3 +101,15 @@ def test_login_with_extra_field(register_user):
     )
 
     assert response.status_code == 200
+
+
+def test_incorrect_email(register_user):
+    response=httpx.post(
+        f"{BASE_URL}/login",
+        json={
+            "email":"test2@gmail.com",
+            "password":"123"
+        }
+    )
+    assert response.status_code==200
+    assert response.json()["message"] == "User not found"
